@@ -1,0 +1,301 @@
+{% load static %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Meta -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Title -->
+        <title>Coding Jobs</title>
+
+        <!-- style -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+       
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+
+        <style>
+            .container{
+                padding: 0;
+                margin: 0;
+                text-decoration: none;
+                list-style: none;
+                box-sizing: border-box;
+                max-width: fit-content;     
+            }
+            .body{
+                background: radial-gradient(#653d84, #332042);
+            }
+            /* .container{
+            background: linear-gradient(to right bottom, #f57542, #e6b83b);
+            } */
+            .subtitle has-text-centered{
+            background-color: darkgrey;
+            }
+            /* .columns{
+            background: linear-gradient(to right bottom, #f57542 );
+            }
+            .containers{
+                background: linear-gradient(to right bottom, #f57542 );
+            } */
+            nav.navbar is-light{
+                background-color: #fff;
+                width: max-content;
+            }
+            .navbar-menu{
+                background-color: #fff;
+                text-align: left;
+            }  
+            .navbar-item{
+                text-align: right;
+                
+            }
+            .navbar-end{
+                text-align: right;
+            }
+            .navbar-brand{
+                background-color: #fff;
+            }
+            #btn{
+                background-color: #fff;
+                text-align: right;
+            }
+            .navbar-brand{
+                color: #fff;
+            }
+            #cnt{
+                width: 10000px;
+                height: 10000px;
+            }
+            .columns{
+                width: 1000px;
+                height: 1000px;
+
+            }
+            img{
+	          width: 100%;
+            }
+            .login {
+               height: 1000px;
+               width: 100%;
+               background: radial-gradient(#653d84, #332042);
+               position: relative;
+            }
+            .login_box {
+            width: 1050px;
+            height: 600px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 1px 4px 22px -8px #0004;
+            display: flex;
+            overflow: hidden;
+            }
+            .login_box .left{
+                  width: 41%;
+                  height: 100%;
+                  padding: 25px 25px;
+  
+            }
+            .login_box .right{
+                width: 59%;
+                height: 100%  
+            }
+            .left .top_link a {
+                  color: #452A5A;
+                  font-weight: 400;
+            }
+            .left .top_link{
+            height: 20px
+            }
+            .left .contact{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                align-self: center;
+                height: 100%;
+                width: 73%;
+                margin: auto;
+            }
+            .left h3{
+                text-align: center;
+                margin-bottom: 40px;
+            }
+            .left input {
+                border: none;
+                width: 80%;
+                margin: 15px 0px;
+                border-bottom: 1px solid #4f30677d;
+                padding: 7px 9px;
+                width: 100%;
+                overflow: hidden;
+                background: transparent;
+                font-weight: 600;
+                font-size: 14px;
+            }
+            .left{
+                background: linear-gradient(-45deg, #dcd7e0, #fff);
+            }
+            
+            .right {
+                background: linear-gradient(212.38deg, rgba(242, 57, 127, 0.7) 0%, rgba(175, 70, 189, 0.71) 100%),url(https://static.seattletimes.com/wp-content/uploads/2019/01/web-typing-ergonomics-1020x680.jpg);
+                color: #fff;
+                position: relative;
+                float: right;
+            }
+
+            .right .right-text{
+                    height: 100%;
+                    position: relative;
+                    transform: translate(0%, 45%);
+            }
+            .right-text h2{
+                display: block;
+                width: 100%;
+                text-align: center;
+                font-size: 50px;
+                font-weight: 500;
+            }
+            .right-text h5{
+                display: block;
+                width: 100%;
+                text-align: center;
+                font-size: 19px;
+                font-weight: 400;
+            }
+
+            .right .right-inductor{
+                    position: absolute;
+                    width: 70px;
+                    height: 7px;
+                    background: #fff0;
+                    left: 50%;
+                    bottom: 70px;
+                    transform: translate(-50%, 0%);
+            }
+            .top_link img {
+                width: 28px;
+                padding-right: 7px;
+                margin-top: -3px;
+            }
+           
+
+
+
+            
+
+            
+        </style>
+
+    </head>
+
+    <body class="body">
+        
+      <div class="container">
+        <!-- Navbar -->
+        <nav class="navbar is-light">
+             <div class="navbar-brand">
+                  <a href="{%url 'frontpage' %}" class="navbar-item"><strong>Coding Jobs</strong></a>
+             </div>
+             
+            <div class="navbar-menu">
+                <div class="navbar-end">
+                    
+                        <a href="{% url 'search' %}" class="navbar-item" id="btn">Search</a>
+                    
+                    {% if request.user.is_authenticated %}
+                        <a href="{% url 'dashboard' %}" class="navbar-item">Dashboard</a>
+                        <a href="{% url 'notifications' %}" class="navbar-item">Notifications ({{ notifications.count }})</a>
+                    {% endif %}
+                    
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            {% if request.user.is_authenticated %}
+                                <a href="{% url 'logout' %}" class="button is-danger">Log Out</a>
+                            {% else %}
+                                <a href="{% url 'signup' %}" class="button is-success"><strong>SignUp</strong></a>
+                                <a href="{% url 'login' %}" class="button is-light">Login</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+      </div> 
+
+        <section class="login">
+            <div class="login_box">
+                <div class="left">
+                    <div class="top_link"><img src="static\imgs\scott-graham-5fNmWej4tAA-unsplash.jpg" class="img" alt="" /></div>
+                        <div class="container" id="cnt">
+                          <!-- <div class="columns"> -->
+                            <!-- <div class="column is-10 is-offset-3"> -->
+                                <h1 class="title">Log in</h1>
+            
+                              <form method="post" action=".">
+                                {% csrf_token %}
+            
+                                {{ form.as_p }}
+            
+                                  <div class="field">
+                                     <div class="control">
+                                        <button class="button is-success">Log in</button>
+                                     </div>
+                                  </div>
+                              </form>
+                            <!-- </div> -->
+                        <!-- </div> -->
+                    </div>
+
+                </div>
+                <div class="right">
+                    <div class="right-text">
+                        <h2>JOB HUB</h2>
+                        <h5>Where You Get All Naughty Jobs</h5>
+                    </div>
+                    <div class="right-inductor"><img src="static\imgs\scott-graham-5fNmWej4tAA-unsplash.jpg" alt=""></div>
+                </div>
+            </div>
+        </section>
+    
+
+
+        <!-- <div class="container" id="cnt">
+            <div class="columns">
+                <div class="column is-10 is-offset-3">
+                    <h1 class="title">Log in</h1>
+
+                 <form method="post" action=".">
+                    {% csrf_token %}
+
+                    {{ form.as_p }}
+
+                    <div class="field">
+                        <div class="control">
+                            <button class="button is-success">Log in</button>
+                        </div>
+                    </div>
+                  </form>
+                </div>
+            </div>
+        </div>  -->
+    </body>
+</html>>    
+    {% endblock %}
+
+
+
+
+
+
+
+
+
+
+

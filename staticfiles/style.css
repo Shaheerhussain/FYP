@@ -1,0 +1,32 @@
+.container{
+    background: linear-gradient(to right bottom, #fbdb89, #f48982);
+ 
+}
+.subtitle has-text-centered{
+    background-color: darkgrey;
+}
+.columns{
+    background: linear-gradient(to right bottom, #fbdb89 );
+    
+}
+.containers{
+    background: linear-gradient(to right bottom, #fbdb89 );
+    
+}
+nav.navbar is-light{
+    background-color:  #fbdb89;
+    
+}
+.navbar-menu{
+    background-color: #fbdb89;
+    
+}  
+.navbar-brand{
+    background-color: #fbdb89;
+}
+.btn{
+    font-family: "Roboto", sans-serif;
+    font-size: 6px;
+    background:#faf2f2;
+
+}
